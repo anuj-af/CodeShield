@@ -23,8 +23,8 @@ import { db } from "./firebaseConfig"
 import { collection, query, where, onSnapshot, doc, getDoc, updateDoc } from "firebase/firestore"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { toast } from "@/hooks/use-toast"
-// import openSourceData from "../assets/opensource.json"
-// import codeSecurityData from "../assets/codesecurity.json"
+import openSourceData from "../assets/opensource.json"
+import codeSecurityData from "../assets/codesecurity.json"
 import configData from "../assets/config.json"
 import { TeamStats,Team } from "../../types/security-types"
 import { ThemeProvider } from "./ThemeProvider";
@@ -49,8 +49,8 @@ export default function SecurityScannerExtension() {
   const [activePage, setActivePage] = useState("dashboard")
   const [showJoinTeamDialog, setShowJoinTeamDialog] = useState(false)
   const [repoUrl, setRepoUrl] = useState<string>("")
-  const [openSourceData, setOpenSourceData] = useState<any>(null)
-  const [codeSecurityData, setCodeSecurityData] = useState<any>(null)
+  // const [openSourceData, setOpenSourceData] = useState<any>(null)
+  // const [codeSecurityData, setCodeSecurityData] = useState<any>(null)
 
   useEffect(() => {
     if (!user) return
@@ -64,8 +64,8 @@ export default function SecurityScannerExtension() {
         ...doc.data(),
       })) as Team[]
       setTeams(teamsData)
-      setOpenSourceData(null)
-      setCodeSecurityData(null) 
+      // setOpenSourceData(null)
+      // setCodeSecurityData(null) 
 
       if (teamsData.length > 0 && !selectedTeam) {
         setSelectedTeam(teamsData[0].id)
@@ -135,59 +135,61 @@ export default function SecurityScannerExtension() {
     //   setActivePage("results")
     // }, 3000)
     setIsScanning(true)
-    try {
-      // Open Source Security Scan
-      const openSourceResponse = await fetch("http://localhost:3000/scan", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ repoUrl, scanType: "open_source" }),
-      })
-      const openSourceResult = await openSourceResponse.json()
-      setOpenSourceData(openSourceResult)
-
-      // Code Security Scan
-      const codeSecurityResponse = await fetch("http://localhost:3000/scan", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ repoUrl, scanType: "code_security" }),
-      })
-      const codeSecurityResult = await codeSecurityResponse.json()
-      setCodeSecurityData(codeSecurityResult)
-
-      // Set scan results and navigate to results page
-      setScanResults({
-        vulnerabilities: [...(openSourceResult.vulnerabilities || []), ...(codeSecurityResult.vulnerabilities || [])],
-      })
-
-      // Update team stats in Firebase
-      if (selectedTeam) {
-        const newStats = {
-          avgHighVulCnt: openSourceResult.vulnerabilities.filter((v: any) => v.severity === "high").length + codeSecurityResult.runs[0].results.filter((r: any) => r.level === "error").length,
-          avgMidVulCnt: openSourceResult.vulnerabilities.filter((v: any) => v.severity === "medium").length + codeSecurityResult.runs[0].results.filter((r: any) => r.level === "warning").length,
-          avgLowVulCnt: openSourceResult.vulnerabilities.filter((v: any) => v.severity === "low").length + codeSecurityResult.runs[0].results.filter((r: any) => r.level === "note").length,
+    setTimeout(async () => {
+      // try {
+        // Open Source Security Scan
+        // const openSourceResponse = await fetch("http://localhost:3000/scan", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({ repoUrl, scanType: "open_source" }),
+        // })
+        // const openSourceResult = await openSourceResponse.json()
+        // setOpenSourceData(openSourceData)
+  
+        // Code Security Scan
+        // const codeSecurityResponse = await fetch("http://localhost:3000/scan", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({ repoUrl, scanType: "code_security" }),
+        // })
+        // const codeSecurityResult = await codeSecurityResponse.json()
+        // setCodeSecurityData(codeSecurityData)
+  
+        // Set scan results and navigate to results page
+        setScanResults({
+          vulnerabilities: [...(openSourceData.vulnerabilities || [])],
+        })
+  
+        // Update team stats in Firebase
+        if (selectedTeam) {
+          const newStats = {
+            avgHighVulCnt: openSourceData.vulnerabilities.filter((v: any) => v.severity === "high").length + codeSecurityData.runs[0].results.filter((r: any) => r.level === "error").length,
+            avgMidVulCnt: openSourceData.vulnerabilities.filter((v: any) => v.severity === "medium").length + codeSecurityData.runs[0].results.filter((r: any) => r.level === "warning").length,
+            avgLowVulCnt: openSourceData.vulnerabilities.filter((v: any) => v.severity === "low").length + codeSecurityData.runs[0].results.filter((r: any) => r.level === "note").length,
+          }
+          await updateTeamStats(selectedTeam, newStats)
         }
-        await updateTeamStats(selectedTeam, newStats)
-      }
-
-      setActivePage("results")
-      toast({
-        title: "Scan Completed",
-        description: "Vulnerability scan has been completed successfully.",
-      })
-    } catch (error) {
-      console.error("Error during scan:", error)
-      toast({
-        title: "Scan Failed",
-        description: "An error occurred during the scan. Please try again.",
-        variant: "destructive",
-      })
-    } finally {
-      setIsScanning(false)
-    }
+  
+        setActivePage("results")
+        toast({
+          title: "Scan Completed",
+          description: "Vulnerability scan has been completed successfully.",
+        })
+      // } catch (error) {
+        // console.error("Error during scan:", error)
+        // toast({
+        //   title: "Scan Failed",
+        //   description: "An error occurred during the scan. Please try again.",
+        //   variant: "destructive",
+        // })
+      // } finally {
+        setIsScanning(false)
+      // }
+    }, 3000)
   }
 
   const handleTeamChange = (teamId: string) => {
