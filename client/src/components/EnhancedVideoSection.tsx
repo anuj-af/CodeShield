@@ -42,7 +42,7 @@ export const EnhancedVideoSection: React.FC = () => {
             </div>
 
             <div className="pt-4">
-              <Button variant="outline" className="border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/20">
+              <Button variant="outline" className="border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/20 bg-transparent">
                 Experience Now
               </Button>
             </div>
@@ -55,7 +55,7 @@ export const EnhancedVideoSection: React.FC = () => {
             className="relative aspect-video rounded-lg overflow-hidden shadow-lg border border-gray-800/50"
           >
             <iframe
-              src="https://www.youtube.com/embed/FJRo0cwV6LY"
+              src="https://www.youtube.com/embed/kLDMphUC4gE"
               title="CodeShield Demo Video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

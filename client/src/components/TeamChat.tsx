@@ -6,7 +6,8 @@ import { useFirebaseChat } from "../hooks/useFirebaseChat";
 import { useScrollToBottom } from "../hooks/useScrollToBottom";
 import { useAuth } from "./AuthContext";
 import { Button } from "@/components/ui/button";
-import { Hash, Copy, Check } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { Hash, ChevronDown, Send, Copy, Check } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -146,6 +147,35 @@ export default function TeamChat({ teamId, teamName }: TeamChatProps) {
             );
           })}
         </div>
+      </div>
+      {/* Scroll to bottom button */}
+      {showScrollButton && (
+        <Button
+          onClick={() => scrollToBottom()}
+          className=" absolute bottom-40 right-40 rounded-full bg-white shadow-lg hover:bg-gray-50"
+          size="icon"
+        >
+          <ChevronDown className="w-4 h-4 text-black" />
+        </Button>
+      )}
+
+      {/* Message Input */}
+      <div className="px-4 py-4 bg-white border-t">
+        <form onSubmit={handleSendMessage} className="flex items-center space-x-2">
+          <div className="flex-1">
+            <Textarea
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder={`Message #${teamName}, want to share code, use formate :${"```"}language (line break) your code${"```"}`}
+              className="bg-gray-100 border-0 focus-visible:ring-1 focus-visible:ring-gray-200 min-h-[2.5rem] max-h-[10rem]"
+              rows={1}
+            />
+          </div>
+          <Button type="submit" size="icon" className="shrink-0" disabled={!newMessage.trim()}>
+            <Send className="w-4 h-4" />
+          </Button>
+        </form>
       </div>
     </div>
   );
