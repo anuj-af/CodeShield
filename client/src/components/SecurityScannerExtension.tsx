@@ -28,6 +28,7 @@ import codeSecurityData from "../assets/codesecurity.json"
 import configData from "../assets/config.json"
 import { TeamStats,Team } from "../../types/security-types"
 import { ThemeProvider } from "./ThemeProvider";
+import ConversationalAI from "./ConversationalAI"
 
 const vulnerabilityTypes = ["OWASP Top 10", "SANS Top 25", "Business Logic", "Emerging Threats"]
 
@@ -189,7 +190,7 @@ export default function SecurityScannerExtension() {
       // } finally {
         setIsScanning(false)
       // }
-    }, 3000)
+    }, 1500)
   }
 
   const handleTeamChange = (teamId: string) => {
@@ -249,6 +250,8 @@ export default function SecurityScannerExtension() {
         return <Gamification />
       case "nlq":
         return <NaturalLanguageQuery />
+      case "cai":
+        return <ConversationalAI />
       case "predictive":
         return <PredictiveAnalysis />
       case "secure-gen":
