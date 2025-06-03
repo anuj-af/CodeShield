@@ -22,6 +22,7 @@ import {
   UserPlus,
   GitBranch,
   HandCoins,
+  Brain
 } from "lucide-react"
 import { useAuth } from "./AuthContext"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
@@ -57,6 +58,7 @@ export function Sidebar({ teams, selectedTeam, onTeamChange, activePage, setActi
     { id: "collaboration", label: "Collaboration", icon: Users },
     { id: "secure-gen", label: "Secure Code Gen", icon: Shield },
     { id: "nlq", label: "Natural Language Query", icon: MessageSquare },
+    { id:"cai", label: "Conversational AI", icon: Brain },
     { id: "predictive", label: "Predictive Analysis", icon: TrendingUp },
     { id: "pentest", label: "Pen Testing", icon: Target },
     { id: "gamification", label: "Gamification", icon: Trophy },

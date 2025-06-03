@@ -360,5 +360,5 @@ app.get("/", (req, res) => {
 // Start the server
 const PORT = 3000;
 app.listen(PORT, () => {
-  console.log(`Snyk scan server running on http://localhost:${PORT}`);
+    console.log(`Codeshield scan server running on http://localhost:${PORT}`);
 });
