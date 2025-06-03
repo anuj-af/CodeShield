@@ -7,7 +7,7 @@ export const votdService = {
   async getVOTDByDate(date: String): Promise<VOTD> {
     try {
         console.log("Calling getVOTDByDate", date);
-      const response = await axios.get(`${API_BASE_URL}/votd/${date}`)
+      const response = await axios.get(`${API_BASE_URL}/votd/${date}`);
       return response.data
     } catch (error) {
       console.error("Error fetching VOTD:", error)

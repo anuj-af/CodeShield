@@ -1,7 +1,7 @@
 {
     "VOTD_DATA": {
         "history": {
-            "2025-02-01": {
+            "2025-06-01": {
                 "id": "1",
                 "title": "Broken Access Control",
                 "description": "Improper access control can expose sensitive information and unauthorized resources.",
@@ -11,7 +11,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/2021/A01_2021-Broken_Access_Control",
                 "completed": false
             },
-            "2025-02-02": {
+            "2025-06-02": {
                 "id": "2",
                 "title": "Security Misconfiguration",
                 "description": "Default configurations can expose your application to attacks.",
@@ -21,7 +21,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/2021/A05_2021-Security_Misconfiguration",
                 "completed": false
             },
-            "2025-02-03": {
+            "2025-06-03": {
                 "id": "3",
                 "title": "Sensitive Data Exposure",
                 "description": "Sensitive data is not properly protected, making it vulnerable to theft.",
@@ -31,7 +31,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/2021/A02_2021-Cryptographic_Failures",
                 "completed": false
             },
-            "2025-02-04": {
+            "2025-06-04": {
                 "id": "4",
                 "title": "Broken Authentication",
                 "description": "Weak authentication mechanisms can allow unauthorized access.",
@@ -41,7 +41,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/2021/A07_2021-Identification_and_Authentication_Failures",
                 "completed": false
             },
-            "2025-02-05": {
+            "2025-06-05": {
                 "id": "5",
                 "title": "Security Issue 5",
                 "description": "Description of Security Issue 5.",
@@ -51,7 +51,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": false
             },
-            "2025-02-06": {
+            "2025-06-06": {
                 "id": "6",
                 "title": "Security Issue 6",
                 "description": "Description of Security Issue 6.",
@@ -61,7 +61,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": true
             },
-            "2025-02-07": {
+            "2025-06-07": {
                 "id": "7",
                 "title": "Security Issue 7",
                 "description": "Description of Security Issue 7.",
@@ -71,7 +71,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": false
             },
-            "2025-02-08": {
+            "2025-06-08": {
                 "id": "8",
                 "title": "Security Issue 8",
                 "description": "Description of Security Issue 8.",
@@ -81,7 +81,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": false
             },
-            "2025-02-09": {
+            "2025-06-09": {
                 "id": "9",
                 "title": "Security Issue 9",
                 "description": "Description of Security Issue 9.",
@@ -91,7 +91,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": true
             },
-            "2025-02-10": {
+            "2025-06-10": {
                 "id": "10",
                 "title": "Security Issue 10",
                 "description": "Description of Security Issue 10.",
@@ -101,7 +101,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": false
             },
-            "2025-02-11": {
+            "2025-06-11": {
                 "id": "11",
                 "title": "Security Issue 11",
                 "description": "Description of Security Issue 11.",
@@ -111,7 +111,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": false
             },
-            "2025-02-12": {
+            "2025-06-12": {
                 "id": "12",
                 "title": "Security Issue 12",
                 "description": "Description of Security Issue 12.",
@@ -121,7 +121,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": true
             },
-            "2025-02-13": {
+            "2025-06-13": {
                 "id": "13",
                 "title": "Security Issue 13",
                 "description": "Description of Security Issue 13.",
@@ -131,7 +131,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": false
             },
-            "2025-02-14": {
+            "2025-06-14": {
                 "id": "14",
                 "title": "Security Issue 14",
                 "description": "Description of Security Issue 14.",
@@ -141,7 +141,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": false
             },
-            "2025-02-15": {
+            "2025-06-15": {
                 "id": "15",
                 "title": "Security Issue 15",
                 "description": "Description of Security Issue 15.",
@@ -151,7 +151,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": true
             },
-            "2025-02-16": {
+            "2025-06-16": {
                 "id": "16",
                 "title": "Security Issue 16",
                 "description": "Description of Security Issue 16.",
@@ -161,7 +161,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": false
             },
-            "2025-02-17": {
+            "2025-06-17": {
                 "id": "17",
                 "title": "Security Issue 17",
                 "description": "Description of Security Issue 17.",
@@ -171,7 +171,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": false
             },
-            "2025-02-18": {
+            "2025-06-18": {
                 "id": "18",
                 "title": "Security Issue 18",
                 "description": "Description of Security Issue 18.",
@@ -181,7 +181,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": true
             },
-            "2025-02-19": {
+            "2025-06-19": {
                 "id": "19",
                 "title": "Security Issue 19",
                 "description": "Description of Security Issue 19.",
@@ -191,7 +191,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": false
             },
-            "2025-02-20": {
+            "2025-06-20": {
                 "id": "20",
                 "title": "Security Issue 20",
                 "description": "Description of Security Issue 20.",
@@ -201,7 +201,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": false
             },
-            "2025-02-21": {
+            "2025-06-21": {
                 "id": "21",
                 "title": "Security Issue 21",
                 "description": "Description of Security Issue 21.",
@@ -211,7 +211,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": true
             },
-            "2025-02-22": {
+            "2025-06-22": {
                 "id": "22",
                 "title": "Security Issue 22",
                 "description": "Description of Security Issue 22.",
@@ -221,7 +221,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": false
             },
-            "2025-02-23": {
+            "2025-06-23": {
                 "id": "23",
                 "title": "Security Issue 23",
                 "description": "Description of Security Issue 23.",
@@ -231,7 +231,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": false
             },
-            "2025-02-24": {
+            "2025-06-24": {
                 "id": "24",
                 "title": "Security Issue 24",
                 "description": "Description of Security Issue 24.",
@@ -241,7 +241,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": true
             },
-            "2025-02-25": {
+            "2025-06-25": {
                 "id": "25",
                 "title": "Security Issue 25",
                 "description": "Description of Security Issue 25.",
@@ -251,7 +251,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": false
             },
-            "2025-02-26": {
+            "2025-06-26": {
                 "id": "26",
                 "title": "Security Issue 26",
                 "description": "Description of Security Issue 26.",
@@ -261,7 +261,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": false
             },
-            "2025-02-27": {
+            "2025-06-27": {
                 "id": "27",
                 "title": "Security Issue 27",
                 "description": "Description of Security Issue 27.",
@@ -271,7 +271,7 @@
                 "reference": "https://owasp.org/www-project-top-ten/",
                 "completed": true
             },
-            "2025-02-28": {
+            "2025-06-28": {
                 "id": "28",
                 "title": "Security Issue 28",
                 "description": "Description of Security Issue 28.",

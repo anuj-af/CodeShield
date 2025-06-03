@@ -23,6 +23,7 @@ export function FeatureCard({ icon, title, content, expandedContent, examples }:
       whileHover={{ scale: 1.02 }}
       onHoverStart={() => setIsFlipped(true)}
       onHoverEnd={() => setIsFlipped(false)}
+      style={{ paddingInline: "0.4rem" }}
     >
       <motion.div
         className={cn(
