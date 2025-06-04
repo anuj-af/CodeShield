@@ -16,6 +16,7 @@ interface LayoutProps {
   codeSecurityData: any | null
   configData: any | null
   teamStats: any | null
+  activePage: string
   projectName: string
 }
 
@@ -28,6 +29,7 @@ export function Layout({
   codeSecurityData,
   configData,
   teamStats,
+  activePage,
   projectName,
 }: LayoutProps) {
   const [showReport, setShowReport] = useState(false)
@@ -83,7 +85,7 @@ export function Layout({
           </header>
 
           {/* Content Area */}
-          <main className="flex-1 overflow-auto p-8">
+          <main className={`flex-1 overflow-auto ${activePage === "cai" ? "" : "p-8" }`}>
             {showReport ? (
               <SecurityReport
                 openSourceData={openSourceData}

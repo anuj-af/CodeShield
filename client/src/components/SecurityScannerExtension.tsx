@@ -302,6 +302,7 @@ export default function SecurityScannerExtension() {
         codeSecurityData={codeSecurityData}
         configData={configData}
         teamStats={teams.find((team) => team.id === selectedTeam)?.teamStats || { avgHighVulCnt: 0, avgMidVulCnt: 0, avgLowVulCnt: 0 }}
+        activePage={activePage}
         projectName="Camp-Ground"
       >
         {renderActivePage()}
