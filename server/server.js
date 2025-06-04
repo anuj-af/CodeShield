@@ -6,6 +6,7 @@ const together = require("together-ai");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const { VOTD_DATA } = require("./db.json");
+const vulnerabilities = require("./newData.json");
 
 const app = express();
 
@@ -221,7 +222,8 @@ app.post("/scanGit", (req, res) => {
 
           if (stdout) {
             try {
-              const snykResults = JSON.parse(stdout.trim());
+              // const snykResults = JSON.parse(stdout.trim());
+              const snykResults = vulnerabilities;
               let hasIssue = false;
               let summary = "✅ No vulnerabilities found";
 
