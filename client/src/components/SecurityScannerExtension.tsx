@@ -256,8 +256,8 @@ export default function SecurityScannerExtension() {
         return <PredictiveAnalysis />
       case "secure-gen":
         return <SecureCodeGeneration />
-      case "pentest":
-        return <AutomatedPenetrationTesting />
+      // case "pentest":
+      //   return <AutomatedPenetrationTesting />
       case "debt":
         return <SecurityDebtTracker />
       case "donation":

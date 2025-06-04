@@ -13,18 +13,21 @@ import { cn } from "@/lib/utils";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism"; 
 import { dark, docco } from "react-syntax-highlighter/dist/esm/styles/hljs"
+import { useTheme } from "next-themes"
+
 
 interface TeamChatProps {
   teamId: string;
   teamName: string;
 }
 
-export default function TeamChat({ teamId, teamName }: TeamChatProps) {
+export default function TeamChat({ teamId, teamName}: TeamChatProps) {
   const { messages, sendMessage } = useFirebaseChat(teamId);
   const [newMessage, setNewMessage] = useState("");
   const { user } = useAuth();
   const { scrollRef, scrollToBottom, handleScroll, showScrollButton, isNearBottom } = useScrollToBottom();
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
+  const {theme} = useTheme();
 
   useEffect(() => {
     if (isNearBottom) {
@@ -82,7 +85,7 @@ export default function TeamChat({ teamId, teamName }: TeamChatProps) {
                 {showAvatar && (
                   <Avatar className="w-8 h-8 shrink-0">
                     <AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${msg.userId}`} />
-                    <AvatarFallback>{msg.userName[0].toUpperCase()}</AvatarFallback>
+                    <AvatarFallback>{msg?.userName?.[0]?.toUpperCase() || "?"}</AvatarFallback>
                   </Avatar>
                 )}
                 <div className={cn("flex flex-col max-w-[70%]", !showAvatar && (isCurrentUser ? "mr-12" : "ml-12"))}>
@@ -117,7 +120,7 @@ export default function TeamChat({ teamId, teamName }: TeamChatProps) {
                       </div>
                       <SyntaxHighlighter
                         language={msg.language || "javascript"}
-                        style={docco}
+                        style={theme === "dark" ? dracula : docco}
                         customStyle={{
                           margin: 0,
                           padding: "1rem",
@@ -160,7 +163,7 @@ export default function TeamChat({ teamId, teamName }: TeamChatProps) {
       )}
 
       {/* Message Input */}
-      <div className="px-4 py-4 bg-white border-t">
+      <div className="px-4 py-4 bg-white dark:bg-gray-800 border-t">
         <form onSubmit={handleSendMessage} className="flex items-center space-x-2">
           <div className="flex-1">
             <Textarea
@@ -168,7 +171,7 @@ export default function TeamChat({ teamId, teamName }: TeamChatProps) {
               onChange={(e) => setNewMessage(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder={`Message #${teamName}, want to share code, use formate :${"```"}language (line break) your code${"```"}`}
-              className="bg-gray-100 border-0 focus-visible:ring-1 focus-visible:ring-gray-200 min-h-[2.5rem] max-h-[10rem]"
+              className="bg-gray-200 border-0 focus-visible:ring-1 focus-visible:ring-gray-200 min-h-[2.5rem] max-h-[10rem] placeholder:text-black"
               rows={1}
             />
           </div>
