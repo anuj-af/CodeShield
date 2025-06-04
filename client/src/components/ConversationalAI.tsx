@@ -9,12 +9,14 @@ import CustomParticleOrb from "@/components/CustomParticleOrb"
 import WaveBackground from "@/components/WaveBackground"
 import LightWaveBackground from "@/components/LightWaveBackground"
 import LanguageSelector from "@/components/LanguageSelector"
-import ThemeToggle from "@/components/ThemeToggle"
+import { useTheme } from "next-themes"
+// import ThemeToggle from "@/components/ThemeToggle"
 
 export default function ConversationalAI() {
   const [isMuted, setIsMuted] = useState(false)
   const [isConnecting, setIsConnecting] = useState(false)
-  const [isDarkMode, setIsDarkMode] = useState(true)
+  const { theme } = useTheme()
+  const isDarkMode = theme === "dark" || theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches
   type Language = "en" | "hi" 
   const [selectedLanguage, setSelectedLanguage] = useState<Language>("hi") 
   const [messages, setMessages] = useState<Array<{ role: "user" | "assistant"; content: string; timestamp: Date }>>([])
@@ -87,9 +89,9 @@ export default function ConversationalAI() {
     setIsMuted(!isMuted)
   }, [isMuted])
 
-  const toggleTheme = useCallback(() => {
-    setIsDarkMode(!isDarkMode)
-  }, [isDarkMode])
+  // const toggleTheme = useCallback(() => {
+  //   setIsDarkMode(!isDarkMode)
+  // }, [isDarkMode])
 
   const isConnected = conversation.status === "connected"
   const isSpeaking = conversation.isSpeaking
@@ -193,7 +195,7 @@ export default function ConversationalAI() {
               isDarkMode={isDarkMode}
             />
 
-            <ThemeToggle isDarkMode={isDarkMode} onToggle={toggleTheme} />
+            {/* <ThemeToggle isDarkMode={isDarkMode} onToggle={toggleTheme} /> */}
 
             <Button
               variant="ghost"
