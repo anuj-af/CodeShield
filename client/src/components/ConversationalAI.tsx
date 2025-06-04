@@ -136,40 +136,8 @@ export default function ConversationalAI() {
       </div>
 
       {/* Header */}
-      <header className={`relative z-10 p-6 border-b ${borderClass} backdrop-blur-md ${headerBgClass}`}>
+      <header className={"relative z-10 p-6"}>
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <div className="relative">
-              <div
-                className={`w-12 h-12 ${
-                  isDarkMode
-                    ? "bg-gradient-to-r from-green-400 to-green-600 border-green-400/30"
-                    : "bg-gradient-to-r from-purple-600 to-indigo-600 border-purple-400/30"
-                } rounded-xl flex items-center justify-center shadow-lg border`}
-              >
-                <span className="text-white font-bold text-xl">CS</span>
-              </div>
-              {isConnected && (
-                <div
-                  className={`absolute -top-1 -right-1 w-4 h-4 ${
-                    isDarkMode ? "bg-green-400" : "bg-purple-500"
-                  } rounded-full animate-pulse shadow-lg`}
-                />
-              )}
-            </div>
-            <div>
-              <h1
-                className={`text-4xl font-bold ${
-                  isDarkMode
-                    ? "bg-gradient-to-r from-green-400 via-green-300 to-green-500"
-                    : "bg-gradient-to-r from-gray-900 via-purple-900 to-indigo-900"
-                } bg-clip-text text-transparent`}
-              >
-                CodeShield AI
-              </h1>
-              <p className={`${textSecondaryClass} text-sm font-medium`}>Advanced Security Assistant</p>
-            </div>
-          </div>
 
           <div className="flex items-center space-x-4">
             <div
