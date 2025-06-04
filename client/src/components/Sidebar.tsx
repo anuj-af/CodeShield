@@ -60,7 +60,7 @@ export function Sidebar({ teams, selectedTeam, onTeamChange, activePage, setActi
     { id: "nlq", label: "Natural Language Query", icon: MessageSquare },
     { id:"cai", label: "Conversational AI", icon: Brain },
     { id: "predictive", label: "Predictive Analysis", icon: TrendingUp },
-    { id: "pentest", label: "Pen Testing", icon: Target },
+    // { id: "pentest", label: "Pen Testing", icon: Target },
     { id: "gamification", label: "Gamification", icon: Trophy },
     { id: "debt", label: "Security Debt", icon: BarChart2 },
     { id: "donation", label: "Donation", icon: HandCoins },

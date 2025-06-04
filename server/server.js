@@ -161,10 +161,10 @@ app.post("/scanGit", (req, res) => {
   }
 
   const scanCommands = {
-    open_source: "snyk test",
-    code_security: "snyk code test",
-    configuration: "snyk iac test",
-    code_quality: "snyk code test --severity-threshold=low",
+    open_source: "npx snyk test",
+    code_security: "npx snyk code test",
+    configuration: "npx snyk iac test",
+    code_quality: "npx snyk code test --severity-threshold=low",
   };
 
   if (!scanCommands[scanType]) {
