@@ -7,7 +7,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "./AuthContext"
 import { FaGoogle } from "react-icons/fa"
-import { ArrowRight, CheckCircle2, Shield, Zap, Lock, Users2, Code2, BarChart3, Youtube } from "lucide-react"
+import { ArrowRight, CheckCircle2, Shield, Zap, Lock, Users2, Code2, BarChart3 } from "lucide-react"
 import { EnhancedVideoSection } from "../components/EnhancedVideoSection"
 import SecurityScannerExtension from "./SecurityScannerExtension"
 import { FloatingAnimation } from "@/components/ui/floating-animation"
@@ -15,12 +15,14 @@ import { ScrollFade } from "@/components/ui/scroll-fade"
 import { PatternBackground } from "@/components/ui/pattern-background"
 import { HeroSection3D } from "../components/HeroSection3D"
 import { FeatureCard } from "../components/FeatureCard"
+import { CICDFeature } from "@/components/ci-cd-feature"
 
 export default function Landing() {
   const { user, signIn, testLogin } = useAuth()
   const featuresRef = useRef<HTMLElement>(null)
   const aboutRef = useRef<HTMLElement>(null)
   const videoSectionRef = useRef<HTMLElement>(null)
+  const cicdRef = useRef<HTMLElement>(null)
   const [activeFeature, setActiveFeature] = useState(0)
 
   const { scrollYProgress } = useScroll()
@@ -156,6 +158,13 @@ export default function Landing() {
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
+                  onClick={() => scrollToSection(cicdRef)}
+                  className="text-sm font-medium hover:text-emerald-400"
+                >
+                  CI/CD Integration
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
                   onClick={() => scrollToSection(videoSectionRef)}
                   className="text-sm font-medium hover:text-emerald-400"
                 >
@@ -251,10 +260,10 @@ export default function Landing() {
                   size="lg"
                   variant="outline"
                   className="text-lg bg-gray-800/50 border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/20 w-full sm:w-auto"
-                  onClick={() => scrollToSection(videoSectionRef)}
+                  onClick={() => scrollToSection(cicdRef)}
                 >
-                  Watch Mission Brief
-                  <Youtube className="ml-2 h-5 w-5" />
+                  CI/CD Integration
+                  <Shield className="ml-2 h-5 w-5" />
                 </Button>
               </motion.div>
               <motion.div
@@ -298,6 +307,11 @@ export default function Landing() {
                 ))}
               </div>
             </div>
+          </section>
+
+          {/* CI/CD Feature Section */}
+          <section ref={cicdRef} id="cicd">
+            <CICDFeature />
           </section>
 
           <section ref={videoSectionRef}>
@@ -360,4 +374,3 @@ export default function Landing() {
 
   return <SecurityScannerExtension />
 }
-

@@ -1,0 +1,52 @@
+name: CodeShield Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🔍 Initiate CodeShield Security Scan
+        id: codeshield
+        shell: bash
+        run: |
+          RESPONSE=$(curl -s -X POST https://codeshield-web-prod-server.vercel.app/scanGit\
+            -H "Content-Type: application/json" \
+            -d '{
+              "repoUrl": "${{ github.event.repository.clone_url }}",
+              "scanType": "open_source"
+            }')
+
+          STATUS=$(echo "$RESPONSE" | jq -r '.status')
+          SUMMARY=$(echo "$RESPONSE" | jq -r '.summary')
+          
+          echo "status=$STATUS" >> "$GITHUB_OUTPUT"
+          echo "summary=$SUMMARY" >> "$GITHUB_OUTPUT"
+
+          echo ""
+          echo "📘 Security Scan Summary"
+          echo "──────────────────────────────"
+          echo "🔎 Status     : ${STATUS^^}"
+          echo "📝 Summary    : $SUMMARY"
+          echo "──────────────────────────────"
+
+      - name: ❌ Block PR - High Risk Vulnerabilities Found
+        if: steps.codeshield.outputs.status == 'fail'
+        run: |
+          echo "🛑 Security scan failed:"
+          echo "${{ steps.codeshield.outputs.summary }}"
+          exit 1
+
+      - name: ✅ Security Scan Passed
+        if: steps.codeshield.outputs.status == 'pass'
+        run: |
+          echo "🎉 Security scan passed successfully!"
+          echo "${{ steps.codeshield.outputs.summary }}"
+          echo "Your code is secure and ready for deployment."
