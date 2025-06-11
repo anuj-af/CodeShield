@@ -1,8 +1,19 @@
-import React from "react"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import React from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Tooltip,
+  // TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import {
   LayoutDashboard,
   Search,
@@ -14,40 +25,52 @@ import {
   MessageSquare,
   TrendingUp,
   Shield,
-  Target,
-  BarChart2,
+  // Target,
+  // BarChart2,
   Settings,
   PlusCircle,
   LogOut,
   UserPlus,
   GitBranch,
   HandCoins,
-  Brain
-} from "lucide-react"
-import { useAuth } from "./AuthContext"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import CreateTeam from "./CreateTeam"
-import JoinTeam from "./JoinTeam"
-import { Separator } from "@/components/ui/separator"
+  Brain,
+} from "lucide-react";
+import { useAuth } from "./AuthContext";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import CreateTeam from "./CreateTeam";
+import JoinTeam from "./JoinTeam";
+import { Separator } from "@/components/ui/separator";
 
 interface Team {
-  id: string
-  name: string
-  repository: string
+  id: string;
+  name: string;
+  repository: string;
 }
 
 interface SidebarProps {
-  teams: Team[]
-  selectedTeam: string | null
-  onTeamChange: (teamId: string) => void
-  activePage: string
-  setActivePage: (page: string) => void
+  teams: Team[];
+  selectedTeam: string | null;
+  onTeamChange: (teamId: string) => void;
+  activePage: string;
+  setActivePage: (page: string) => void;
 }
 
-export function Sidebar({ teams, selectedTeam, onTeamChange, activePage, setActivePage }: SidebarProps) {
-  const { signOut } = useAuth()
-  const [showCreateTeamDialog, setShowCreateTeamDialog] = React.useState(false)
-  const [showJoinTeamDialog, setShowJoinTeamDialog] = React.useState(false)
+export function Sidebar({
+  teams,
+  selectedTeam,
+  onTeamChange,
+  activePage,
+  setActivePage,
+}: SidebarProps) {
+  const { signOut } = useAuth();
+  const [showCreateTeamDialog, setShowCreateTeamDialog] = React.useState(false);
+  const [showJoinTeamDialog, setShowJoinTeamDialog] = React.useState(false);
 
   const menuItems = [
     { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -58,21 +81,21 @@ export function Sidebar({ teams, selectedTeam, onTeamChange, activePage, setActi
     { id: "collaboration", label: "Collaboration", icon: Users },
     { id: "secure-gen", label: "Secure Code Gen", icon: Shield },
     { id: "nlq", label: "Natural Language Query", icon: MessageSquare },
-    { id:"cai", label: "Conversational AI", icon: Brain },
+    { id: "cai", label: "Conversational AI", icon: Brain },
     { id: "predictive", label: "Predictive Analysis", icon: TrendingUp },
     // { id: "pentest", label: "Pen Testing", icon: Target },
     { id: "gamification", label: "Gamification", icon: Trophy },
-    { id: "debt", label: "Security Debt", icon: BarChart2 },
+    // { id: "debt", label: "Security Debt", icon: BarChart2 },
     { id: "donation", label: "Donation", icon: HandCoins },
     { id: "settings", label: "Settings", icon: Settings },
-  ]
+  ];
 
   const handleTeamChange = (teamId: string) => {
-    onTeamChange(teamId)
-    setActivePage("dashboard")
-  }
+    onTeamChange(teamId);
+    setActivePage("dashboard");
+  };
 
-  const selectedTeamData = teams.find((team) => team.id === selectedTeam)
+  const selectedTeamData = teams.find((team) => team.id === selectedTeam);
 
   return (
     <TooltipProvider>
@@ -82,9 +105,14 @@ export function Sidebar({ teams, selectedTeam, onTeamChange, activePage, setActi
             <h2 className="text-lg font-semibold tracking-tight px-2">Teams</h2>
             <Select value={selectedTeam || ""} onValueChange={handleTeamChange}>
               <SelectTrigger className="w-full focus:ring-0 focus-visible:ring-0">
-                <SelectValue placeholder="Select team">{selectedTeamData && selectedTeamData.name}</SelectValue>
+                <SelectValue placeholder="Select team">
+                  {selectedTeamData && selectedTeamData.name}
+                </SelectValue>
               </SelectTrigger>
-              <SelectContent className="w-[var(--radix-select-trigger-width)]" align="start">
+              <SelectContent
+                className="w-[var(--radix-select-trigger-width)]"
+                align="start"
+              >
                 <ScrollArea className="h-[170px]">
                   {teams.map((team) => (
                     <SelectItem key={team.id} value={team.id} className="py-2">
@@ -95,10 +123,10 @@ export function Sidebar({ teams, selectedTeam, onTeamChange, activePage, setActi
                             <GitBranch className="h-3 w-3" />
                             {(() => {
                               try {
-                                const url = new URL(team.repository)
-                                return url.pathname.slice(1)
+                                const url = new URL(team.repository);
+                                return url.pathname.slice(1);
                               } catch {
-                                return team.repository
+                                return team.repository;
                               }
                             })()}
                           </span>
@@ -109,9 +137,15 @@ export function Sidebar({ teams, selectedTeam, onTeamChange, activePage, setActi
                 </ScrollArea>
                 <Separator className="my-2" />
                 <div className="p-2 space-y-2">
-                  <Dialog open={showCreateTeamDialog} onOpenChange={setShowCreateTeamDialog}>
+                  <Dialog
+                    open={showCreateTeamDialog}
+                    onOpenChange={setShowCreateTeamDialog}
+                  >
                     <DialogTrigger asChild>
-                      <Button variant="outline" className="w-full justify-start">
+                      <Button
+                        variant="outline"
+                        className="w-full justify-start"
+                      >
                         <PlusCircle className="mr-2 h-4 w-4" />
                         Create Team
                       </Button>
@@ -120,12 +154,20 @@ export function Sidebar({ teams, selectedTeam, onTeamChange, activePage, setActi
                       <DialogHeader>
                         <DialogTitle>Create a New Team</DialogTitle>
                       </DialogHeader>
-                      <CreateTeam onClose={() => setShowCreateTeamDialog(false)} />
+                      <CreateTeam
+                        onClose={() => setShowCreateTeamDialog(false)}
+                      />
                     </DialogContent>
                   </Dialog>
-                  <Dialog open={showJoinTeamDialog} onOpenChange={setShowJoinTeamDialog}>
+                  <Dialog
+                    open={showJoinTeamDialog}
+                    onOpenChange={setShowJoinTeamDialog}
+                  >
                     <DialogTrigger asChild>
-                      <Button variant="outline" className="w-full justify-start">
+                      <Button
+                        variant="outline"
+                        className="w-full justify-start"
+                      >
                         <UserPlus className="mr-2 h-4 w-4" />
                         Join Team
                       </Button>
@@ -174,6 +216,5 @@ export function Sidebar({ teams, selectedTeam, onTeamChange, activePage, setActi
         </div>
       </div>
     </TooltipProvider>
-  )
+  );
 }
-

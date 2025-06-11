@@ -58,7 +58,7 @@ export function Layout({
         <div className="w-64 h-screen fixed left-0 top-0 bg-background border-r">{sidebar}</div>
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col ml-64">
+        <div className="flex-1 flex flex-col ml-64 overflow-x-hidden">
           {/* Header */}
           <header className="h-14 border-b px-4 flex items-center justify-between bg-card">
             <div className="flex items-center gap-2">

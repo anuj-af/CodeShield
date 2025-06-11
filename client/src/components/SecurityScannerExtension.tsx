@@ -11,7 +11,7 @@ import Gamification from "./Gamification"
 import NaturalLanguageQuery from "./NaturalLanguageQuery"
 import PredictiveAnalysis from "./PredictiveAnalysis"
 import SecureCodeGeneration from "./SecureCodeGeneration"
-import AutomatedPenetrationTesting from "./AutomatedPenetrationTesting"
+// import AutomatedPenetrationTesting from "./AutomatedPenetrationTesting"
 import SecurityDebtTracker from "./SecurityDebtTracker"
 import SettingsPanel from "./SettingsPanel"
 import CreateTeam from "./CreateTeam"
@@ -218,6 +218,7 @@ export default function SecurityScannerExtension() {
             selectedVulnerabilities={selectedVulnerabilities}
             onVulnerabilityChange={setSelectedVulnerabilities}
             initialRepoUrl={repoUrl}
+            setActivePage={setActivePage}
           />
         )
       case "results":
@@ -253,7 +254,10 @@ export default function SecurityScannerExtension() {
       case "cai":
         return <ConversationalAI />
       case "predictive":
-        return <PredictiveAnalysis />
+        return <PredictiveAnalysis teamId={selectedTeam}
+            teamName={teams.find((team) => team.id === selectedTeam)?.name || "Team"} 
+            repoUrl = {repoUrl}
+            />
       case "secure-gen":
         return <SecureCodeGeneration />
       // case "pentest":
@@ -275,6 +279,7 @@ export default function SecurityScannerExtension() {
             selectedVulnerabilities={selectedVulnerabilities}
             onVulnerabilityChange={setSelectedVulnerabilities}
             initialRepoUrl={repoUrl}
+            setActivePage={setActivePage}
           />
         )
     }

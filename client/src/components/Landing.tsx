@@ -1,36 +1,48 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useRef, useState } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { useAuth } from "./AuthContext"
-import { FaGoogle } from "react-icons/fa"
-import { ArrowRight, CheckCircle2, Shield, Zap, Lock, Users2, Code2, BarChart3 } from "lucide-react"
-import { EnhancedVideoSection } from "../components/EnhancedVideoSection"
-import SecurityScannerExtension from "./SecurityScannerExtension"
-import { FloatingAnimation } from "@/components/ui/floating-animation"
-import { ScrollFade } from "@/components/ui/scroll-fade"
-import { PatternBackground } from "@/components/ui/pattern-background"
-import { HeroSection3D } from "../components/HeroSection3D"
-import { FeatureCard } from "../components/FeatureCard"
-import { CICDFeature } from "@/components/ci-cd-feature"
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "./AuthContext";
+import { FaGoogle } from "react-icons/fa";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Shield,
+  Zap,
+  Lock,
+  Users2,
+  Code2,
+  BarChart3,
+} from "lucide-react";
+import { EnhancedVideoSection } from "../components/EnhancedVideoSection";
+import SecurityScannerExtension from "./SecurityScannerExtension";
+import { FloatingAnimation } from "@/components/ui/floating-animation";
+import { ScrollFade } from "@/components/ui/scroll-fade";
+import { PatternBackground } from "@/components/ui/pattern-background";
+import { HeroSection3D } from "../components/HeroSection3D";
+import { FeatureCard } from "../components/FeatureCard";
+import { CICDFeature } from "@/components/ci-cd-feature";
+import { VSCodeExtensionFeature } from "@/components/vscode-extension-feature";
+import { BusinessFeasibility } from "@/components/business-feasibility";
 
 export default function Landing() {
-  const { user, signIn, testLogin } = useAuth()
-  const featuresRef = useRef<HTMLElement>(null)
-  const aboutRef = useRef<HTMLElement>(null)
-  const videoSectionRef = useRef<HTMLElement>(null)
-  const cicdRef = useRef<HTMLElement>(null)
-  const [activeFeature, setActiveFeature] = useState(0)
+  const { user, signIn, testLogin } = useAuth();
+  const featuresRef = useRef<HTMLElement>(null);
+  const aboutRef = useRef<HTMLElement>(null);
+  const videoSectionRef = useRef<HTMLElement>(null);
+  const cicdRef = useRef<HTMLElement>(null);
+  const vscodeRef = useRef<HTMLElement>(null);
+  const [activeFeature, setActiveFeature] = useState(0);
 
-  const { scrollYProgress } = useScroll()
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   const scrollToSection = (ref: React.RefObject<HTMLElement>) => {
-    ref.current?.scrollIntoView({ behavior: "smooth" })
-  }
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const featureCards = [
     {
@@ -105,7 +117,7 @@ export default function Landing() {
         "Quantify the impact of your security efforts on your business",
       ],
     },
-  ]
+  ];
 
   const missionItems = [
     {
@@ -128,7 +140,7 @@ export default function Landing() {
       content:
         "Enable seamless collaboration between development and security teams with shared dashboards, ticket integration, and automated notifications.",
     },
-  ]
+  ];
 
   if (!user) {
     return (
@@ -158,10 +170,24 @@ export default function Landing() {
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
+                  onClick={() => scrollToSection(vscodeRef)}
+                  className="text-sm font-medium hover:text-emerald-400"
+                >
+                  VS Code Extension
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
                   onClick={() => scrollToSection(cicdRef)}
                   className="text-sm font-medium hover:text-emerald-400"
                 >
                   CI/CD Integration
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  onClick={() => scrollToSection(aboutRef)}
+                  className="text-sm font-medium hover:text-emerald-400"
+                >
+                  Business Case
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -170,16 +196,12 @@ export default function Landing() {
                 >
                   Demo Video
                 </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  onClick={() => scrollToSection(aboutRef)}
-                  className="text-sm font-medium hover:text-emerald-400"
-                >
-                  About
-                </motion.button>
               </nav>
             </div>
-            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-4">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-4"
+            >
               <Button
                 variant="outline"
                 onClick={signIn}
@@ -200,7 +222,6 @@ export default function Landing() {
         </motion.header>
 
         <main className="flex-1 relative">
-          {/* <NetworkGlobe /> */}
           <HeroSection3D />
           <section className="relative min-h-[100vh] flex items-center overflow-hidden">
             <motion.div
@@ -224,8 +245,8 @@ export default function Landing() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="mx-auto max-w-[700px] text-lg text-gray-300 md:text-xl mb-8"
               >
-                CodeShield empowers you with unparalleled visibility, context, and control to safeguard the world's
-                digital infrastructure.
+                CodeShield empowers you with unparalleled visibility, context,
+                and control to safeguard the world's digital infrastructure.
               </motion.p>
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
@@ -260,10 +281,10 @@ export default function Landing() {
                   size="lg"
                   variant="outline"
                   className="text-lg bg-gray-800/50 border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/20 w-full sm:w-auto"
-                  onClick={() => scrollToSection(cicdRef)}
+                  onClick={() => scrollToSection(vscodeRef)}
                 >
-                  CI/CD Integration
-                  <Shield className="ml-2 h-5 w-5" />
+                  VS Code Extension
+                  <Code2 className="ml-2 h-5 w-5" />
                 </Button>
               </motion.div>
               <motion.div
@@ -272,27 +293,39 @@ export default function Landing() {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-gray-300"
               >
-                {["OWASP Top 10 Fortification", "AI-Powered Threat Analysis", "Enterprise-Grade Defense"].map(
-                  (text, i) => (
-                    <motion.div key={text} className="flex items-center gap-2" whileHover={{ scale: 1.05 }}>
-                      <CheckCircle2 className="h-5 w-5 text-emerald-400" />
-                      {text}
-                    </motion.div>
-                  ),
-                )}
+                {[
+                  "OWASP Top 10 Fortification",
+                  "AI-Powered Threat Analysis",
+                  "Enterprise-Grade Defense",
+                ].map((text, i) => (
+                  <motion.div
+                    key={text}
+                    className="flex items-center gap-2"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <CheckCircle2 className="h-5 w-5 text-emerald-400" />
+                    {text}
+                  </motion.div>
+                ))}
               </motion.div>
             </FloatingAnimation>
           </section>
 
-          <section ref={featuresRef} id="features" className="relative w-full py-16 sm:py-24">
+          <section
+            ref={featuresRef}
+            id="features"
+            className="relative w-full py-16 sm:py-24"
+          >
             <div className="container px-4 sm:px-6 lg:px-8">
-              <PatternBackground className="text-emerald-500/10" />
+              <PatternBackground />
               <ScrollFade>
                 <div className="text-center mb-12 sm:mb-16">
                   <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl bg-gradient-to-r from-emerald-400 to-gray-500 bg-clip-text text-transparent">
                     Cybersecurity Arsenal
                   </h2>
-                  <p className="mt-4 text-gray-400 md:text-xl">Cutting-edge tools to fortify your digital defenses</p>
+                  <p className="mt-4 text-gray-400 md:text-xl">
+                    Cutting-edge tools to fortify your digital defenses
+                  </p>
                 </div>
               </ScrollFade>
               <div className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -309,9 +342,46 @@ export default function Landing() {
             </div>
           </section>
 
+          {/* VS Code Extension Feature Section */}
+          <section ref={vscodeRef} id="vscode">
+            <VSCodeExtensionFeature />
+          </section>
           {/* CI/CD Feature Section */}
           <section ref={cicdRef} id="cicd">
             <CICDFeature />
+          </section>
+
+          <section ref={aboutRef} id="about">
+            <BusinessFeasibility />
+            <section
+              ref={aboutRef}
+              id="about"
+              className="relative w-full bg-gradient-to-b from-gray-900 to-gray-800 py-16 sm:py-24"
+            >
+              <div className="container px-4 sm:px-6 lg:px-8">
+                <PatternBackground />
+                <ScrollFade>
+                  <h2 className="text-3xl font-bold mb-12 sm:mb-16 text-center bg-gradient-to-r from-emerald-400 to-gray-500 bg-clip-text text-transparent">
+                    Enterprise-Grade Security
+                  </h2>
+                </ScrollFade>
+                <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
+                  {missionItems.map((item, i) => (
+                    <ScrollFade key={item.title}>
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        className="p-6 rounded-lg bg-gray-800/50 backdrop-blur-sm border border-emerald-500/30 shadow-lg hover:shadow-emerald-500/20 transition-all duration-300"
+                      >
+                        <h3 className="text-xl font-semibold mb-4 text-emerald-400">
+                          {item.title}
+                        </h3>
+                        <p className="text-gray-300">{item.content}</p>
+                      </motion.div>
+                    </ScrollFade>
+                  ))}
+                </div>
+              </div>
+            </section>
           </section>
 
           <section ref={videoSectionRef}>
@@ -319,58 +389,36 @@ export default function Landing() {
               <EnhancedVideoSection />
             </ScrollFade>
           </section>
-
-          <section
-            ref={aboutRef}
-            id="about"
-            className="relative w-full bg-gradient-to-b from-gray-900 to-gray-800 py-16 sm:py-24"
-          >
-            <div className="container px-4 sm:px-6 lg:px-8">
-              <PatternBackground className="text-emerald-500/10" />
-              <ScrollFade>
-                <h2 className="text-3xl font-bold mb-12 sm:mb-16 text-center bg-gradient-to-r from-emerald-400 to-gray-500 bg-clip-text text-transparent">
-                  Enterprise-Grade Security
-                </h2>
-              </ScrollFade>
-              <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
-                {missionItems.map((item, i) => (
-                  <ScrollFade key={item.title}>
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      className="p-6 rounded-lg bg-gray-800/50 backdrop-blur-sm border border-emerald-500/30 shadow-lg hover:shadow-emerald-500/20 transition-all duration-300"
-                    >
-                      <h3 className="text-xl font-semibold mb-4 text-emerald-400">{item.title}</h3>
-                      <p className="text-gray-300">{item.content}</p>
-                    </motion.div>
-                  </ScrollFade>
-                ))}
-              </div>
-            </div>
-          </section>
         </main>
 
         <footer className="border-t border-gray-800 py-8 bg-gradient-to-b from-gray-900 to-gray-800">
           <div className="container px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-sm text-gray-400">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              className="text-sm text-gray-400"
+            >
               © 2025 CodeShield. Safeguarding the digital realm.
             </motion.div>
             <nav className="flex gap-4 text-sm">
-              {["Privacy Policy", "Terms of Service", "Contact Us"].map((item) => (
-                <motion.a
-                  key={item}
-                  href="#"
-                  whileHover={{ scale: 1.05 }}
-                  className="text-gray-400 hover:text-emerald-400 transition-colors"
-                >
-                  {item}
-                </motion.a>
-              ))}
+              {["Privacy Policy", "Terms of Service", "Contact Us"].map(
+                (item) => (
+                  <motion.a
+                    key={item}
+                    href="#"
+                    whileHover={{ scale: 1.05 }}
+                    className="text-gray-400 hover:text-emerald-400 transition-colors"
+                  >
+                    {item}
+                  </motion.a>
+                )
+              )}
             </nav>
           </div>
         </footer>
       </div>
-    )
+    );
   }
 
-  return <SecurityScannerExtension />
+  return <SecurityScannerExtension />;
 }

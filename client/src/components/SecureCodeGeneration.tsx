@@ -11,8 +11,8 @@ import type { Language } from "../../types/githubViewTypes"
 import { Code, Code2 } from "lucide-react"
 
 export default function SecureCodeGeneration() {
-  const [selectedLanguage, setSelectedLanguage] = useState("")
-  const [selectedPattern, setSelectedPattern] = useState("")
+  const [selectedLanguage, setSelectedLanguage] = useState("java")
+  const [selectedPattern, setSelectedPattern] = useState("Authentication")
   const [isLoading, setIsLoading] = useState(false)
   const [code, setCode] = useState("")
   const [error, setError] = useState("")
@@ -24,7 +24,6 @@ export default function SecureCodeGeneration() {
 
   const fetchLanguagesAndPatterns = async () => {
     try {
-      setIsLoading(true)
       const repoStructure = await fetchRepoStructure()
       setLanguages(repoStructure)
       setError("")
@@ -121,7 +120,7 @@ export default function SecureCodeGeneration() {
                 fetchLanguagesAndPatterns().then(() => handleGenerate())
               }}
               disabled={!selectedLanguage || !selectedPattern || isLoading}
-              className="px-8 bg-black dark:bg-primary hover:bg-black dark:bg-primary/90 shadow-lg hover:shadow-xl transition-all"
+              className="px-8 bg-black hover:bg-black dark:bg-primary/90 shadow-lg hover:shadow-xl transition-all"
               size="lg"
             >
               {isLoading ? (

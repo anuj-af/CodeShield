@@ -69,16 +69,17 @@ export default function AICodeRewrite({ vulnerabilities }: AICodeRewriteProps) {
     setRewrittenCode("") // Clear previous output
     const url = "http://localhost:3000/ai"
     const prefixInfo =
-      "Optimize and correct the following code to make it the best version possible, ensuring it is efficient, free from vulnerabilities, and adheres to best practices. Provide only the corrected and optimized code without any explanation or description.And also don't send any unneccessary comment, but you can send examples to use that rewritten code and any information you think that user needs to know to use that rewritten code. \n\n"
-    const data = prefixInfo + originalCode
+      "Optimize and correct the following code to make it the best version possible, ensuring it is efficient, free from vulnerabilities, and adheres to best practices. Provide only the corrected and optimized code without any explanation or description.And also don't send any unneccessary comment, but you can send examples to use that rewritten code and any information you think that user needs to know to use that rewritten code. \n\n";
+    const message = prefixInfo + originalCode;
 
     try {
-      const response = await axios.post(url, data, {
+      const response = await axios.post(url, message, {
         headers: {
           "Content-Type": "text/plain",
         },
       })
-      const aiResponse = response.data
+
+      const aiResponse = response.data;
       const match = aiResponse.match(/```(\w+)\n([\s\S]+?)```/)
       if (match) {
         setLanguage(match[1])
