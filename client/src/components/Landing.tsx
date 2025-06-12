@@ -120,27 +120,29 @@ export default function Landing() {
   ];
 
   const missionItems = [
-    {
-      title: "Continuous Security Monitoring",
-      content:
-        "Our platform continuously monitors your codebase for security vulnerabilities, providing real-time alerts and detailed remediation steps.",
-    },
-    {
-      title: "Developer-First Security",
-      content:
-        "Integrate security directly into your development workflow with IDE plugins, CI/CD integration, and automated code reviews.",
-    },
-    {
-      title: "Compliance & Reporting",
-      content:
-        "Generate comprehensive security reports and maintain compliance with industry standards like OWASP Top 10, HIPAA, and SOC 2.",
-    },
-    {
-      title: "Team Collaboration",
-      content:
-        "Enable seamless collaboration between development and security teams with shared dashboards, ticket integration, and automated notifications.",
-    },
-  ];
+  {
+    title: "Security Audit Delay",
+    content:
+      "Avoid last-minute audit failures with real-time vulnerability detection and auto-remediation. CodeShield keeps your releases on track and secure.",
+  },
+  {
+    title: "Knowledge Gap",
+    content:
+      "Empower every developer with AI suggestions, secure code generation, and natural language support. No security background? No problem.",
+  },
+  {
+    title: "Cybersecurity Bottlenecks & Burnout",
+    content:
+      "Automate security workflows and reduce pressure on small security teams. CodeShield scales protection without scaling the burnout.",
+  },
+  {
+    title: "Evolving Threats",
+    content:
+      "Stay protected with AI-powered predictive analysis and threat tracking. CodeShield evolves with the threat landscape so you stay ahead.",
+  },
+];
+
+
 
   if (!user) {
     return (
@@ -356,7 +358,7 @@ export default function Landing() {
             <section
               ref={aboutRef}
               id="about"
-              className="relative w-full bg-gradient-to-b from-gray-900 to-gray-800 py-16 sm:py-24"
+              className="relative w-full bg-gradient-to-b from-gray-900 to-gray-800 pt-2 pb-16"
             >
               <div className="container px-4 sm:px-6 lg:px-8">
                 <PatternBackground />
