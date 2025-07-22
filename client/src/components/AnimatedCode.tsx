@@ -1,7 +1,7 @@
 import type React from "react"
 import { useEffect, useState } from "react"
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter"
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs"
+import { atomOneDark, atomOneLight, dracula } from "react-syntax-highlighter/dist/esm/styles/hljs"
 import { Button } from "@/components/ui/button"
 import { Copy, Check } from "lucide-react"
 
@@ -25,7 +25,7 @@ export const AnimatedCode: React.FC<AnimatedCodeProps> = ({ code, language, shou
         } else {
           clearInterval(interval)
         }
-      }, 10) // Adjust the speed of animation here
+      }, 5) // Adjust the speed of animation here
 
       return () => clearInterval(interval)
     } else {
@@ -48,7 +48,7 @@ export const AnimatedCode: React.FC<AnimatedCodeProps> = ({ code, language, shou
       <Button onClick={handleCopy} className="absolute top-2 right-2 z-10" size="sm" variant="outline">
         {isCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
       </Button>
-      <SyntaxHighlighter language={language} style={docco} customStyle={{ margin: 0, padding: "1rem" }}>
+      <SyntaxHighlighter language={language} style={atomOneLight} customStyle={{ margin: 0, padding: "1rem" }}>
         {displayedCode}
       </SyntaxHighlighter>
     </div>

@@ -72,7 +72,7 @@ export default function ConversationalAI() {
 
       // Start the conversation with your agent
       await conversation.startSession({
-        agentId: "agent_01jwacbgw4eca8yn06ehx30e1z",
+        agentId: "agent_01jwacbgw4eca8yn06ehx30e1z___",
       })
     } catch (error) {
       console.error("Failed to start conversation:", error)

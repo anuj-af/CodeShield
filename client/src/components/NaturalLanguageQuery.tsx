@@ -396,7 +396,7 @@ export default function NaturalLanguageQueryChat() {
         // Handle text query
         console.log("Sending query:", currentQuery);
         response = await axios.post(
-          "http://localhost:3000/query/false",
+          "http://localhost:3000/query/true",
           currentQuery,
           {
             headers: { "Content-Type": "text/plain" },

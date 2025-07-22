@@ -212,13 +212,13 @@ export default function Landing() {
                 <FaGoogle className="mr-2" />
                 Sign in with Google
               </Button>
-              <Button
+              {/* <Button
                 variant="outline"
                 onClick={testLogin}
                 className="border-emerald-500 text-emerald-400 hover:bg-emerald-500 hover:text-gray-900 bg-transparent"
               >
                 Test Login
-              </Button>
+              </Button> */}
             </motion.div>
           </div>
         </motion.header>

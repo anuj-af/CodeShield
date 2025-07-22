@@ -52,6 +52,27 @@ export default function AICodeRewrite({ vulnerabilities }: AICodeRewriteProps) {
     }
   }, [rewrittenCode, activeTab])
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setOriginalCode(`const mysql = require("mysql");
+const express = require("express");
+const app = express();
+const connection = mysql.createConnection({ host: "localhost", user: "root", password: "", database: "test" });
+
+app.get("/user", (req, res) => {
+  const username = req.query.username;
+  const query = \`SELECT * FROM users WHERE username = '\${username}'\`;
+
+  connection.query(query, (err, results) => {
+    if (err) return res.status(500).send("Error");
+    res.json(results);
+  });
+});`);
+    }, 500); // 0.5 second delay
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   const detectLanguage = (code: string) => {
     if (code.includes("def ") || code.includes("import ")) {
       setLanguage("python")
@@ -68,9 +89,7 @@ export default function AICodeRewrite({ vulnerabilities }: AICodeRewriteProps) {
     setShouldAnimate(true)
     setRewrittenCode("") // Clear previous output
     const url = "http://localhost:3000/ai"
-    const prefixInfo =
-      "Optimize and correct the following code to make it the best version possible, ensuring it is efficient, free from vulnerabilities, and adheres to best practices. Provide only the corrected and optimized code without any explanation or description.And also don't send any unneccessary comment, but you can send examples to use that rewritten code and any information you think that user needs to know to use that rewritten code. \n\n";
-    const message = prefixInfo + originalCode;
+    const message = originalCode;
 
     try {
       const response = await axios.post(url, message, {

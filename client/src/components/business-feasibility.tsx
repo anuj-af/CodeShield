@@ -43,7 +43,6 @@ export function BusinessFeasibility() {
       subtitle: "",
       price: "₹499",
       period: "month",
-      annualPrice: "₹5988 billed annually",
       popular: false,
       features: [
         "Unlimited vulnerability scanning",
@@ -215,78 +214,6 @@ export function BusinessFeasibility() {
           </div>
         </ScrollFade>
 
-        {/* Pricing Cards */}
-        <ScrollFade>
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold text-emerald-400 mb-8 text-center">
-              Choose Your Security Plan
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {pricingPlans.map((plan) => (
-                <motion.div
-                  key={plan.name}
-                  className={`relative p-8 rounded-xl border transition-all duration-300 flex flex-col ${
-                    plan.popular
-                      ? "bg-emerald-500/10 border-emerald-500 shadow-lg shadow-emerald-500/20"
-                      : "bg-gray-800/30 border-gray-700 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10"
-                  }`}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  style={{
-                    boxShadow: plan.popular
-                      ? "0 0 30px rgba(16, 185, 129, 0.3), inset 0 0 30px rgba(16, 185, 129, 0.1)"
-                      : "0 0 20px rgba(16, 185, 129, 0.1)",
-                  }}
-                >
-                  <div className="text-center mb-8">
-                    <h4 className="text-xl font-bold text-emerald-400 mb-2">
-                      {plan.name}
-                    </h4>
-                    <p className="text-gray-400 text-sm mb-4">
-                      {plan.subtitle}
-                    </p>
-                    <div className="mb-4">
-                      <span className="text-4xl font-bold text-gray-100">
-                        {plan.price}
-                      </span>
-                      <span className="text-gray-400 ml-2">
-                        / {plan.period}
-                      </span>
-                    </div>
-                    {plan.annualPrice && (
-                      <p className="text-sm text-emerald-300">
-                        {plan.annualPrice}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* This section fills available space */}
-                  <div className="space-y-4 mb-8 flex-1">
-                    {plan.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-emerald-500 flex-shrink-0" />
-                        <span className="text-gray-300 text-sm">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Button stays pinned to the bottom */}
-                  <Button
-                    className={`w-full mt-auto ${
-                      plan.buttonVariant === "default"
-                        ? "bg-emerald-500 text-gray-900 hover:bg-emerald-600"
-                        : "border-emerald-500 text-emerald-400 hover:bg-emerald-500 hover:text-gray-900 bg-transparent"
-                    }`}
-                    variant={plan.buttonVariant}
-                  >
-                    {plan.buttonText}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </ScrollFade>
-
         {/* Competitor Comparison Table */}
         <ScrollFade>
           <div className="mb-16">
@@ -428,6 +355,73 @@ export function BusinessFeasibility() {
                   </tbody>
                 </table>
               </div>
+            </div>
+          </div>
+        </ScrollFade>
+
+        {/* Pricing Cards */}
+        <ScrollFade>
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-emerald-400 mb-8 text-center">
+              Choose Your Security Plan
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {pricingPlans.map((plan) => (
+                <motion.div
+                  key={plan.name}
+                  className={`relative p-8 rounded-xl border transition-all duration-300 flex flex-col ${
+                    plan.popular
+                      ? "bg-emerald-500/10 border-emerald-500 shadow-lg shadow-emerald-500/20"
+                      : "bg-gray-800/30 border-gray-700 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10"
+                  }`}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  style={{
+                    boxShadow: plan.popular
+                      ? "0 0 30px rgba(16, 185, 129, 0.3), inset 0 0 30px rgba(16, 185, 129, 0.1)"
+                      : "0 0 20px rgba(16, 185, 129, 0.1)",
+                  }}
+                >
+                  <div className="text-center mb-8">
+                    <h4 className="text-xl font-bold text-emerald-400 mb-2">
+                      {plan.name}
+                    </h4>
+                    <p className="text-gray-400 text-sm mb-4">
+                      {plan.subtitle}
+                    </p>
+                    <div className="mb-4">
+                      <span className="text-4xl font-bold text-gray-100">
+                        {plan.price}
+                      </span>
+                      <span className="text-gray-400 ml-2">
+                        / {plan.period}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* This section fills available space */}
+                  <div className="space-y-4 mb-8 flex-1">
+                    {plan.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-center gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-emerald-500 flex-shrink-0" />
+                        <span className="text-gray-300 text-sm">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Button stays pinned to the bottom */}
+                  <Button
+                    className={`w-full mt-auto ${
+                      plan.buttonVariant === "default"
+                        ? "bg-emerald-500 text-gray-900 hover:bg-emerald-600"
+                        : "border-emerald-500 text-emerald-400 hover:bg-emerald-500 hover:text-gray-900 bg-transparent"
+                    }`}
+                    variant={plan.buttonVariant}
+                  >
+                    {plan.buttonText}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </motion.div>
+              ))}
             </div>
           </div>
         </ScrollFade>
